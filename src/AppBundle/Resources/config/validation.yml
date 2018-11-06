@@ -1,0 +1,52 @@
+AppBundle\Entity\Category:
+  properties:
+    name:
+      - NotBlank: ~
+
+AppBundle\Entity\Job:
+  properties:
+    category_id:
+      - NotBlank: ~
+    type:
+      - NotBlank: ~
+    company:
+      - NotBlank: ~
+    logo:
+      - NotBlank: ~
+    url:
+      - NotBlank: ~
+    position:
+      - NotBlank: ~
+    location:
+      - NotBlank: ~
+    description:
+      - NotBlank: ~
+    how_to_apply:
+      - NotBlank: ~
+    token:
+      - NotBlank: ~
+    is_public:
+      - NotBlank: ~
+    is_validated:
+      - NotBlank: ~
+    email:
+      - NotBlank: ~
+    expires_at:
+      - NotBlank: ~
+    created_at:
+      - NotBlank: ~
+    updated_at:
+      - NotBlank: ~  
+
+AppBundle\Entity\Affiliate:
+  properties:
+    url:
+      - NotBlank: ~
+    email:
+      - NotBlank: ~
+    token:
+      - NotBlank: ~
+    is_active:
+      - NotBlank: ~
+    created_at:
+      - NotBlank: ~
