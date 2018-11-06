@@ -59,4 +59,7 @@ AppBundle\Entity\Job:
             joinColumn:
                 name: category_id
                 referencedColumnName: id
-    lifecycleCallbacks: {  }
+    lifecycleCallbacks: 
+        prePersist: [ setCreatedAtValue, setUpdatedAtValue ]
+        preUpdate: [ setUpdatedAtValue ]
+        

@@ -36,4 +36,5 @@ AppBundle\Entity\Affiliate:
                 inverseJoinColumns:
                     category_id:
                         referencedColumnName: id
-    lifecycleCallbacks: {  }
+    lifecycleCallbacks: 
+        prePersist: [ setCreatedAtValue ]
