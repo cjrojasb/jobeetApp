@@ -5,7 +5,7 @@ AppBundle\Entity\Category:
 
 AppBundle\Entity\Job:
   properties:
-    category_id:
+    category:
       - NotBlank: ~
     type:
       - NotBlank: ~
@@ -21,21 +21,21 @@ AppBundle\Entity\Job:
       - NotBlank: ~
     description:
       - NotBlank: ~
-    how_to_apply:
+    howToApply:
       - NotBlank: ~
     token:
       - NotBlank: ~
-    is_public:
+    isPublic:
       - NotBlank: ~
-    is_validated:
+    isActivated:
       - NotBlank: ~
     email:
       - NotBlank: ~
-    expires_at:
+    expiresAt:
       - NotBlank: ~
-    created_at:
+    createdAt:
       - NotBlank: ~
-    updated_at:
+    updatedAt:
       - NotBlank: ~  
 
 AppBundle\Entity\Affiliate:
@@ -46,7 +46,7 @@ AppBundle\Entity\Affiliate:
       - NotBlank: ~
     token:
       - NotBlank: ~
-    is_active:
+    isActive:
       - NotBlank: ~
-    created_at:
+    createdAt:
       - NotBlank: ~

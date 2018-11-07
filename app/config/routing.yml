@@ -1,3 +1,23 @@
 app:
-    resource: '@AppBundle/Controller/'
-    type: annotation
+  resource: '@AppBundle/Controller/'
+  type: annotation
+  
+job_index:
+  path: /
+  defaults: { _controller: AppBundle:Job:index }
+  
+job_new: 
+  path: /job/new
+  defaults: { _controller: AppBundle:Job:new }
+
+job_show: 
+  path: /job/{company}/{location}/{id}/{position}
+  defaults: { _controller: AppBundle:Job:show }  
+
+job_edit: 
+  path: /job/{id}/edit
+  defaults: { _controller: AppBundle:Job:edit }  
+
+job_delete: 
+  path: /job/{id}
+  defaults: { _controller: AppBundle:Job:delete }  
