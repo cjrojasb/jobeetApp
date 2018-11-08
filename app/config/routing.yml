@@ -20,4 +20,9 @@ job_edit:
 
 job_delete: 
   path: /job/{id}
-  defaults: { _controller: AppBundle:Job:delete }  
+  defaults: { _controller: AppBundle:Job:delete }
+  
+category_show:
+  path: /category/{slug}/{page}
+  defaults: { _controller: AppBundle:Category:show, page: 1 }
+  

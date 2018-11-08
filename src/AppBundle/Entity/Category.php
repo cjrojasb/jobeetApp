@@ -2,8 +2,12 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Utils\Jobeet;
+
 /**
- * Category
+ * @ORM\Entity()
+ * @ORM\Table(name="category")
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\CategoryRepository")
  */
 class Category
 {
@@ -17,6 +21,9 @@ class Category
      */
     private $name;
 
+    private $activeJobs;
+
+    private $moreJobs;
 
     /**
      * Get id
@@ -143,5 +150,52 @@ class Category
     public function __toString()
     {
         return $this->getName();
+    }
+
+    public function setActiveJobs($jobs)
+    {
+        $this->activeJobs = $jobs;
+    }
+    public function getActiveJobs()
+    {
+        return $this->activeJobs;
+    }
+
+    public function getSlug()
+    {
+        return Jobeet::slugify($this->getName());
+    }
+
+    public function setMoreJobs($jobs)
+    {
+        $this->moreJobs = $jobs >=  0 ? $jobs : 0;
+    }
+    
+    public function getMoreJobs()
+    {
+        return $this->moreJobs;
+    }
+    /**
+     * @var string
+     */
+    private $slug;
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return Category
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function setSlugValue()
+    {
+        $this->slug = Jobeet::slugify($this->getName());
     }
 }
