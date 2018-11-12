@@ -2,19 +2,19 @@ AppBundle\Entity\Category:
   properties:
     name:
       - NotBlank: ~
-
 AppBundle\Entity\Job:
   properties:
     category:
       - NotBlank: ~
     type:
-      - NotBlank: ~
+        - NotBlank: ~
+        - Choice: [ callback="getTypeValues" ] 
+        # Revisar Choice
     company:
       - NotBlank: ~
     logo:
-      - NotBlank: ~
+      - Image: ~
     url:
-      - NotBlank: ~
     position:
       - NotBlank: ~
     location:
@@ -24,19 +24,18 @@ AppBundle\Entity\Job:
     howToApply:
       - NotBlank: ~
     token:
-      - NotBlank: ~
     isPublic:
       - NotBlank: ~
     isActivated:
       - NotBlank: ~
     email:
       - NotBlank: ~
+      - Email:
+          message: The email "{{ value }}" is not a valid email.
+          checkMX: true
     expiresAt:
-      - NotBlank: ~
     createdAt:
-      - NotBlank: ~
-    updatedAt:
-      - NotBlank: ~  
+    updatedAt:  
 
 AppBundle\Entity\Affiliate:
   properties:

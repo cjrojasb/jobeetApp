@@ -15,14 +15,24 @@ job_show:
   defaults: { _controller: AppBundle:Job:show }  
 
 job_edit: 
-  path: /job/{id}/edit
+  path: /job/{token}/edit
   defaults: { _controller: AppBundle:Job:edit }  
 
 job_delete: 
-  path: /job/{id}
+  path: /job/{token}/delete
   defaults: { _controller: AppBundle:Job:delete }
+
+job_preview:
+  path: /job/{company}/{location}/{token}/{position}
+  defaults: { _controller: AppBundle:Job:admin }
+
+job_publish:
+  path: /job/{token}/publish
+  defaults: { _controller: AppBundle:Job:admin }
   
 category_show:
-  path: /category/{slug}/{page}
+  path: /category/{slug}/{page}+
   defaults: { _controller: AppBundle:Category:show, page: 1 }
+
+
   
