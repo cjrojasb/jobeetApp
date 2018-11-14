@@ -34,8 +34,12 @@ class JobController extends Controller
             $category->setMoreJobs($em->getRepository('AppBundle:Job')->countActiveJobs($category->getId()) - $this->container->getParameter('max_jobs_on_homepage'));
         }
 
-        return $this->render('job/index.html.twig', array(
+        $format = $this->getRequest()->getRequestFormat();
+
+        return $this->render('job/index.'.$format.'.twig', array(
             'categories' => $categories,
+            'lastUpdated' => $em->getRepository('AppBundle:Job')->getLatestPost()->getCreatedAt()->format(DATE_ATOM),
+            'feedId' => sha1($this->get('router')->generate('job_index', array('_format'=> 'atom'), true)),
         ));
     }
 
@@ -88,6 +92,24 @@ class JobController extends Controller
      */
     public function showAction(Job $job)
     {
+        $session = $this->getRequest()->getSession();
+        // fetch jobs already stored in the job history
+        $jobsArray = $session->get('job_history', array());
+        // store the job as an array so we can put it in the session and avoid entity serialize errors
+        $jobArray = array(
+            'id' => $job->getId(),
+            'position' => $job->getPosition(),
+            'company' => $job->getCompany(),
+            'companySlug' => $job->getCompanySlug(),
+            'locationSlug' => $job->getLocationSlug(),
+            'positionSlug' => $job->getPositionSlug());
+        if (!in_array($jobArray, $jobsArray)) {
+            // add the current job at the beginning of the array
+            array_unshift($jobsArray, $jobArray);
+            // store the new job history back into the session
+            $session->set('job_history', array_slice($jobsArray, 0, 3));
+        }
+
         $deleteForm = $this->createDeleteForm($job);
 
         return $this->render('job/show.html.twig', array(
@@ -108,13 +130,13 @@ class JobController extends Controller
             throw $this->createNotFoundException('Job is activated and cannot be edited.');
         }
 
-        if ($request->getMethod() != Request::METHOD_POST) {
-            if(is_file($this->getParameter('jobs_directory').'/'.$job->getLogo())) {
-                $job->setLogo(
-                    new File($this->getParameter('jobs_directory').'/'.$job->getLogo())
-                );
-            }
-        }
+        // if ($request->getMethod() != Request::METHOD_POST) {
+        //     if(is_file($this->getParameter('jobs_directory').'/'.$job->getLogo())) {
+        //         $job->setLogo(
+        //             new File($this->getParameter('jobs_directory').'/'.$job->getLogo())
+        //         );
+        //     }
+        // }
 
         $deleteForm = $this->createDeleteForm($job);
         $editForm = $this->createForm('AppBundle\Form\JobType', $job);

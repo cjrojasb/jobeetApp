@@ -578,4 +578,37 @@ class Job
       $this->expiresAt = new \DateTime(date('Y-m-d H:i:s', time() + 86400 * 30));
       return true;
   }
+    /**
+     * @var string
+     */
+    private $file;
+
+
+    /**
+     * Set file
+     *
+     * @param string $file
+     *
+     * @return Job
+     */
+    public function setFile($file)
+    {
+      $this->file = $file;
+      
+      if($file) {
+          // we need to change the logo to let Doctrine know our Job object has changed;
+          // that's because Doctrine does not monitor the $file property
+          $this->logo = md5(uniqid()).'.'.$file->guessExtension();
+      }
+    }
+
+    /**
+     * Get file
+     *
+     * @return string
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
 }

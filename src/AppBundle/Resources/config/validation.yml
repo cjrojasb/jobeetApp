@@ -13,7 +13,6 @@ AppBundle\Entity\Job:
     company:
       - NotBlank: ~
     logo:
-      - Image: ~
     url:
     position:
       - NotBlank: ~

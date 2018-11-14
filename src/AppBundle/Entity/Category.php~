@@ -149,7 +149,7 @@ class Category
 
     public function __toString()
     {
-        return $this->getName();
+        return $this->getName() ? $this->getName() : "";
     }
 
     public function setActiveJobs($jobs)
@@ -180,7 +180,6 @@ class Category
      */
     private $slug;
 
-
     /**
      * Set slug
      *
@@ -193,5 +192,10 @@ class Category
         $this->slug = $slug;
 
         return $this;
+    }
+
+    public function setSlugValue()
+    {
+        $this->slug = Jobeet::slugify($this->getName());
     }
 }

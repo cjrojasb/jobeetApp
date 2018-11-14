@@ -52,6 +52,11 @@ AppBundle\Entity\Job:
             type: datetime
         updatedAt:
             type: datetime
+        file:
+            type: string
+            lenght: 255
+            nullable: true
+
     manyToOne:
         category:
             targetEntity: Category
