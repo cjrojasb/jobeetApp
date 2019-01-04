@@ -3,16 +3,6 @@
 namespace AppBundle\Entity;
 use AppBundle\Utils\Jobeet as Jobeet;
 
-/**
-* Job
-*/
-
-/**
-* @ORM\Entity()
-* @ORM\Table(name="job")
-* @ORM\HasLifecycleCallbacks()
-* @ORM\Entity(repositoryClass="AppBundle\Entity\JobRepository")
-*/
 class Job
 {
   /**

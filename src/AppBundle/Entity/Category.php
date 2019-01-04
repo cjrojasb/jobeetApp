@@ -4,11 +4,6 @@ namespace AppBundle\Entity;
 
 use AppBundle\Utils\Jobeet;
 
-/**
- * @ORM\Entity()
- * @ORM\Table(name="category")
- * @ORM\Entity(repositoryClass="AppBundle\Entity\CategoryRepository")
- */
 class Category
 {
     /**

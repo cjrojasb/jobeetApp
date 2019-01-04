@@ -214,14 +214,19 @@ class Affiliate
         return $this->categories;
     }
 
-    /**
-     * @ORM\PrePersist
-     */
     public function setCreatedAtValue()
     {
         if(!$this->getCreatedAt())
         {
             $this->createdAt = new \DateTime();
         }
+    }
+
+    public function setTokenValue()
+    {
+      if(!$this->getToken())
+      {
+        $this->token = sha1($this->getEmail().rand(11111, 99999));
+      }
     }
 }
